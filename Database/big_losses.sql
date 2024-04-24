@@ -1,0 +1,7 @@
+CREATE TABLE DATA_RADAR.BIG_LOSSES 
+(
+    SK_EVENT            BYTEA, 
+    CUSTOMER_GUID       VARCHAR(255), 
+    REAL_MONEY          double precision, 
+    EVENT_TIMESTAMP     TIMESTAMP
+);
