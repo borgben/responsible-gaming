@@ -40,8 +40,9 @@ object Main extends App {
   properties.load(source.bufferedReader())
 
   val settings = new Properties
-  settings.put(StreamsConfig.APPLICATION_ID_CONFIG, "bensgroup")
-  settings.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+  val boostrapServerConfig = s"${properties.getProperty("kafka_hostname")}:${properties.getProperty("kafka_port")}"
+  settings.put(StreamsConfig.APPLICATION_ID_CONFIG, properties.getProperty("kafka_consumer_group"))
+  settings.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, boostrapServerConfig)
   settings.put("default.deserialization.exception.handler",classOf[LogAndContinueExceptionHandler])
 
   val connectionPool: Resource[IO, Resource[IO, Session[IO]]] = ConnectionPool.pool(

@@ -28,15 +28,15 @@ object Service {
               DATA_RADAR.BIG_LOSSES as BL
           WHERE
               BL.CUSTOMER_GUID = $varchar AND ((BL.EVENT_TIMESTAMP <=  $timestamp) AND (BL.EVENT_TIMESTAMP >= ( $timestamp - INTERVAL '1 day')));
-      """
-      .query(float8)
+    """
+    .query(float8)
 
   private val insertCustomerLossRecord: Command[String ~ Double ~ LocalDateTime] = 
     sql"""
           INSERT INTO DATA_RADAR.BIG_LOSSES(customer_guid, real_money, event_timestamp)
               VALUES ($varchar, $float8, $timestamp);
-        """
-        .command
+    """
+    .command
 
   def fromSession[F[_]: Monad](s: Session[F]): Service[F] =     
     new Service[F] {

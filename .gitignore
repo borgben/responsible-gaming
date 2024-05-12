@@ -1,0 +1,11 @@
+Terraform/.*
+Kstreams/.*
+Kstreams/target
+Kstreams/src/.*
+Kstreams/project/project
+Kstreams/project/target
+Kstreams/src/main/resources/database.properties
+Kafka/kafka
+.*
+!.gitignore
+metals.sbt
